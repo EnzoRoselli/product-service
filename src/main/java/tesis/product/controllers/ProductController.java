@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 import static tesis.product.utils.ParametersDefaultValue.CLASIFICATIONS;
 
-@RequestMapping
+@RequestMapping("products")
 @RestController
 @Slf4j
 @XRayEnabled
