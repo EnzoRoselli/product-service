@@ -1,4 +1,4 @@
-package tesis.product.xray;
+package mymarket.product.xray;
 
 import com.amazonaws.xray.javax.servlet.AWSXRayServletFilter;
 import org.springframework.context.annotation.Bean;
@@ -9,9 +9,8 @@ import javax.servlet.Filter;
 @Configuration
 public class AwsXrayConfig {
 
-	@Bean
-	public Filter TracingFilter() {
-		return new AWSXRayServletFilter("product");
-
-	}
+    @Bean
+    public Filter TracingFilter() {
+        return new AWSXRayServletFilter("product");
+    }
 }

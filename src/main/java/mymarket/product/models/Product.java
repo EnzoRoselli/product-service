@@ -1,17 +1,9 @@
-package tesis.product.models;
+package mymarket.product.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import mymarket.product.models.enums.Clasifications;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "products")
@@ -29,7 +21,7 @@ public class Product {
     @Column(name = "image")
     private String image;
     @Column(name = "clasification")
-    private String clasification;
+    private Clasifications clasification;
     @Column(name = "description")
     private String description;
 }

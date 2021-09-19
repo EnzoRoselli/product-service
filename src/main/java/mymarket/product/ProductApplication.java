@@ -1,4 +1,4 @@
-package tesis.product;
+package mymarket.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
