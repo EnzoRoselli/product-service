@@ -1,9 +1,9 @@
 package mymarket.product.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import mymarket.product.commons.models.Product;
+import mymarket.product.commons.models.enums.Clasifications;
 import mymarket.product.exceptions.ProductNotFoundException;
-import mymarket.product.models.Product;
-import mymarket.product.models.enums.Clasifications;
 import mymarket.product.services.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static mymarket.product.utils.ParametersDefaultValue.CLASIFICATIONS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -150,7 +149,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void getById_NonexistentId_UserNotFoundException() throws Exception {
+    public void getById_NonexistentId_ProductNotFoundException() throws Exception {
         //given
         BDDMockito.willThrow(new ProductNotFoundException("")).given(productService).getById(anyLong());
 
@@ -165,7 +164,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void getByUserId_ExpectedValues_Ok() throws Exception {
+    public void getByClasificationsAndName_ExpectedValues_Ok() throws Exception {
         //given
         given(productService.getByClasificationsAndName(anyList(), anyString())).willReturn(productList);
 
@@ -178,13 +177,14 @@ public class ProductControllerTest {
                 .andReturn().getResponse();
 
         //then
-        then(productService).should().getByClasificationsAndName(Arrays.asList("Almacen", "Limpieza"), "Lavandina");
+        then(productService).should().getByClasificationsAndName(
+                Arrays.asList(Clasifications.Almacen, Clasifications.Limpieza), "Lavandina");
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(response.getContentAsString()).isEqualTo(asJsonString(productList));
     }
 
     @Test
-    public void getByUserId_EmptyValues_Ok() throws Exception {
+    public void getByClasificationsAndName_EmptyValues_Ok() throws Exception {
         //given
         given(productService.getByClasificationsAndName(anyList(), anyString())).willReturn(productList);
 
@@ -195,7 +195,7 @@ public class ProductControllerTest {
                 .andReturn().getResponse();
 
         //then
-        then(productService).should().getByClasificationsAndName(Arrays.asList(CLASIFICATIONS.split(",")), "");
+        then(productService).should().getByClasificationsAndName(Arrays.asList(Clasifications.values()), "");
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(response.getContentAsString()).isEqualTo(asJsonString(productList));
     }
