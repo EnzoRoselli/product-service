@@ -3,13 +3,14 @@ package mymarket.product.controllers;
 import com.amazonaws.xray.spring.aop.XRayEnabled;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import mymarket.product.models.Product;
+import mymarket.product.commons.models.Product;
+import mymarket.product.commons.models.enums.Clasifications;
 import mymarket.product.services.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static mymarket.product.utils.ParametersDefaultValue.CLASIFICATIONS;
+import static mymarket.product.commons.utils.ParametersDefaultValue.CLASIFICATIONS;
 
 @RequestMapping("products")
 @RestController
@@ -36,7 +37,7 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> getByClasificationsAndName(@RequestParam(required = false, defaultValue = CLASIFICATIONS) List<String> clasifications,
+    public List<Product> getByClasificationsAndName(@RequestParam(required = false, defaultValue = CLASIFICATIONS) List<Clasifications> clasifications,
                                                     @RequestParam(required = false, defaultValue = "") String name) {
         return productService.getByClasificationsAndName(clasifications, name);
     }

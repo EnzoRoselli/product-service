@@ -1,8 +1,8 @@
 package mymarket.product.services;
 
+import mymarket.product.commons.models.Product;
+import mymarket.product.commons.models.enums.Clasifications;
 import mymarket.product.exceptions.ProductNotFoundException;
-import mymarket.product.models.Product;
-import mymarket.product.models.enums.Clasifications;
 import mymarket.product.repositories.ProductRepository;
 import org.assertj.core.api.BDDAssertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +20,6 @@ import java.util.Optional;
 
 import static com.googlecode.catchexception.apis.BDDCatchException.caughtException;
 import static com.googlecode.catchexception.apis.BDDCatchException.when;
-import static mymarket.product.utils.ParametersDefaultValue.CLASIFICATIONS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -119,10 +118,10 @@ public class ProductServiceTest {
                 .willReturn(productList);
 
         //when
-        List<Product> products = productService.getByClasificationsAndName(Arrays.asList(CLASIFICATIONS.split(",")), "Lavandina");
+        List<Product> products = productService.getByClasificationsAndName(Arrays.asList(Clasifications.values()), "Lavandina");
 
         //then
-        then(productRepository).should().findByClasificationInAndNameContaining(Arrays.asList(CLASIFICATIONS.split(",")), "Lavandina");
+        then(productRepository).should().findByClasificationInAndNameContaining(Arrays.asList(Clasifications.values()), "Lavandina");
         assertThat(products).isNotNull();
         assertThat(products).hasSize(2);
         assertThat(products).isEqualTo(productList);

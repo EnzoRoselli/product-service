@@ -1,18 +1,19 @@
 package mymarket.product.services;
 
-import lombok.RequiredArgsConstructor;
+import mymarket.product.commons.models.Product;
+import mymarket.product.commons.models.enums.Clasifications;
 import mymarket.product.exceptions.ProductNotFoundException;
-import mymarket.product.models.Product;
 import mymarket.product.repositories.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class ProductService {
 
-    private final ProductRepository productRepository;
+    @Autowired
+    ProductRepository productRepository;
 
     public Product save(Product product) {
         return productRepository.save(product);
@@ -27,7 +28,7 @@ public class ProductService {
                 .orElseThrow(() -> new ProductNotFoundException("Product with id " + id + " not found."));
     }
 
-    public List<Product> getByClasificationsAndName(List<String> clasifications, String name) {
+    public List<Product> getByClasificationsAndName(List<Clasifications> clasifications, String name) {
         return productRepository.findByClasificationInAndNameContaining(clasifications, name);
     }
 }

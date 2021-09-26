@@ -1,16 +1,13 @@
 package mymarket.product.repositories;
 
-import mymarket.product.models.Product;
+import mymarket.product.commons.models.Product;
+import mymarket.product.commons.models.enums.Clasifications;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-
-    Optional<Product> findByName(String name);
-
-    List<Product> findByClasificationInAndNameContaining(List<String> clasifications, String name);
+    List<Product> findByClasificationInAndNameContaining(List<Clasifications> clasifications, String name);
 }
