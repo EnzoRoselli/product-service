@@ -88,12 +88,12 @@ public class ProductServiceTest {
         given(productRepository.findById(anyLong())).willReturn(productOptional);
 
         //when
-        Product userFromRepository = productService.getById(1L);
+        Product productFromRepository = productService.getById(1L);
 
         //then
         then(productRepository).should().findById(1L);
-        assertThat(userFromRepository).isNotNull();
-        assertThat(userFromRepository).isEqualTo(productOptional.get());
+        assertThat(productFromRepository).isNotNull();
+        assertThat(productFromRepository).isEqualTo(productOptional.get());
     }
 
     @Test

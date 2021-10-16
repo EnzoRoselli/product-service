@@ -149,7 +149,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void getById_NonexistentId_UserNotFoundException() throws Exception {
+    public void getById_NonexistentId_ProductNotFoundException() throws Exception {
         //given
         BDDMockito.willThrow(new ProductNotFoundException("")).given(productService).getById(anyLong());
 
@@ -164,7 +164,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void getByUserId_ExpectedValues_Ok() throws Exception {
+    public void getByClasificationsAndName_ExpectedValues_Ok() throws Exception {
         //given
         given(productService.getByClasificationsAndName(anyList(), anyString())).willReturn(productList);
 
@@ -184,7 +184,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void getByUserId_EmptyValues_Ok() throws Exception {
+    public void getByClasificationsAndName_EmptyValues_Ok() throws Exception {
         //given
         given(productService.getByClasificationsAndName(anyList(), anyString())).willReturn(productList);
 
