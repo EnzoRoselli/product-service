@@ -128,7 +128,7 @@
                             <excludes>
                                 <exclude>**/*ProductApplication.class</exclude>
                                 <exclude>**/xray/**</exclude>
-                                <exclude>**/exceptions/**</exclude>
+                                <exclude>**/exception/**</exclude>
                                 <exclude>**/config/**</exclude>
                             </excludes>
                         </configuration>
