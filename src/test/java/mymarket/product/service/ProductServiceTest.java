@@ -99,7 +99,7 @@ public class ProductServiceTest {
     @Test
     public void getById_NonexistentId_ProductNotFoundException() {
         //given
-        BDDMockito.willThrow(new ProductNotFoundException("Product with id 1 not found.")).given(productRepository).findById(anyLong());
+        given(productRepository.findById(anyLong())).willReturn(Optional.empty());
 
         //when
         when(() -> productService.getById(1L));
