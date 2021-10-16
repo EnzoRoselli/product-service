@@ -1,8 +1,8 @@
-package mymarket.product.controllers;
+package mymarket.product.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import mymarket.product.exceptions.ErrorMessage;
-import mymarket.product.exceptions.ProductNotFoundException;
+import mymarket.product.exception.ErrorMessage;
+import mymarket.product.exception.ProductNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;

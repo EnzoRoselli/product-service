@@ -1,4 +1,4 @@
-package mymarket.product.repositories;
+package mymarket.product.repository;
 
 import mymarket.product.commons.models.Product;
 import mymarket.product.commons.models.enums.Clasifications;

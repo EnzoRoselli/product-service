@@ -1,9 +1,9 @@
-package mymarket.product.services;
+package mymarket.product.service;
 
 import mymarket.product.commons.models.Product;
 import mymarket.product.commons.models.enums.Clasifications;
-import mymarket.product.exceptions.ProductNotFoundException;
-import mymarket.product.repositories.ProductRepository;
+import mymarket.product.exception.ProductNotFoundException;
+import mymarket.product.repository.ProductRepository;
 import org.assertj.core.api.BDDAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,11 +1,11 @@
-package mymarket.product.controllers;
+package mymarket.product.controller;
 
 import com.amazonaws.xray.spring.aop.XRayEnabled;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import mymarket.product.commons.models.Product;
 import mymarket.product.commons.models.enums.Clasifications;
-import mymarket.product.services.ProductService;
+import mymarket.product.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

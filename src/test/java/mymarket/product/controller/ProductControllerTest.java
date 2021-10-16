@@ -1,10 +1,10 @@
-package mymarket.product.controllers;
+package mymarket.product.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import mymarket.product.commons.models.Product;
 import mymarket.product.commons.models.enums.Clasifications;
-import mymarket.product.exceptions.ProductNotFoundException;
-import mymarket.product.services.ProductService;
+import mymarket.product.exception.ProductNotFoundException;
+import mymarket.product.service.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
