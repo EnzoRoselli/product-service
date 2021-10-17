@@ -1,8 +1,8 @@
 package mymarket.product.service;
 
+import mymarket.exception.commons.exception.NotFoundException;
 import mymarket.product.commons.models.Product;
 import mymarket.product.commons.models.enums.Clasifications;
-import mymarket.product.exception.ProductNotFoundException;
 import mymarket.product.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class ProductService {
 
     public Product getById(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new ProductNotFoundException("Product with id " + id + " not found."));
+                .orElseThrow(() -> new NotFoundException("Product with id " + id + " not found."));
     }
 
     public List<Product> getByClasificationsAndName(List<Clasifications> clasifications, String name) {
