@@ -64,7 +64,7 @@ enzoroselli/product
 
 ## Code quality with Jacoco (code coverage library)
 
-- Every repository MUST have at least %80 of code coverage. **More code coverage == Less headache** => **true**
+- Every repository MUST have at least 80% of code coverage. **More code coverage == Less headache** => **true**
 - It creates code coverage reports in the folder: build -> site -> jacoco -> index.html
 
 To see if we have a good code coverage, we have to run:
