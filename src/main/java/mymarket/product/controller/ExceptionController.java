@@ -1,8 +1,8 @@
 package mymarket.product.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import mymarket.product.exception.ErrorMessage;
-import mymarket.product.exception.ProductNotFoundException;
+import mymarket.exception.commons.exception.ErrorMessage;
+import mymarket.exception.commons.exception.NotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -33,7 +33,7 @@ public class ExceptionController {
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler({ProductNotFoundException.class, EmptyResultDataAccessException.class})
+    @ExceptionHandler({NotFoundException.class, EmptyResultDataAccessException.class})
     public ErrorMessage notFound(Exception ex, WebRequest request) {
         log.error(ex.getMessage());
         log.error(Arrays.toString(ex.getStackTrace()));

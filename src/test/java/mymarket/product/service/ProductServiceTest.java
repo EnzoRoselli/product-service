@@ -1,14 +1,13 @@
 package mymarket.product.service;
 
+import mymarket.exception.commons.exception.NotFoundException;
 import mymarket.product.commons.models.Product;
 import mymarket.product.commons.models.enums.Clasifications;
-import mymarket.product.exception.ProductNotFoundException;
 import mymarket.product.repository.ProductRepository;
 import org.assertj.core.api.BDDAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -99,14 +98,14 @@ public class ProductServiceTest {
     @Test
     public void getById_NonexistentId_ProductNotFoundException() {
         //given
-        BDDMockito.willThrow(new ProductNotFoundException("Product with id 1 not found.")).given(productRepository).findById(anyLong());
+        given(productRepository.findById(anyLong())).willReturn(Optional.empty());
 
         //when
         when(() -> productService.getById(1L));
 
         //then
         BDDAssertions.then(caughtException())
-                .isInstanceOf(ProductNotFoundException.class)
+                .isInstanceOf(NotFoundException.class)
                 .hasMessage("Product with id 1 not found.")
                 .hasNoCause();
     }

@@ -1,9 +1,9 @@
 package mymarket.product.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import mymarket.exception.commons.exception.NotFoundException;
 import mymarket.product.commons.models.Product;
 import mymarket.product.commons.models.enums.Clasifications;
-import mymarket.product.exception.ProductNotFoundException;
 import mymarket.product.service.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -151,7 +151,7 @@ public class ProductControllerTest {
     @Test
     public void getById_NonexistentId_ProductNotFoundException() throws Exception {
         //given
-        BDDMockito.willThrow(new ProductNotFoundException("")).given(productService).getById(anyLong());
+        BDDMockito.willThrow(new NotFoundException("")).given(productService).getById(anyLong());
 
         //when
         MockHttpServletResponse response = mockMvc.perform(get("/products/150")
