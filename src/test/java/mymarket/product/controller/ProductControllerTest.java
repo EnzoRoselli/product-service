@@ -69,7 +69,7 @@ public class ProductControllerTest {
     @Test
     public void save_ExpectedValues_Ok() throws Exception {
         //given
-        given(productService.save(any())).willReturn(product1);
+        given(productService.save(product1)).willReturn(product1);
 
         //when
         MockHttpServletResponse response = mockMvc.perform(post("/products/")
@@ -80,7 +80,7 @@ public class ProductControllerTest {
 
         //then
         then(productService).should().save(product1);
-        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.CREATED.value());
         assertThat(response.getContentType()).isEqualTo(MediaType.APPLICATION_JSON.toString());
         assertThat(response.getContentAsString()).isEqualTo(asJsonString(product1));
     }
@@ -135,15 +135,15 @@ public class ProductControllerTest {
     @Test
     public void getById_ExpectedValues_Ok() throws Exception {
         //given
-        given(productService.getById(anyLong())).willReturn(product1);
+        given(productService.getById(product1.getId())).willReturn(product1);
 
         //when
-        MockHttpServletResponse response = mockMvc.perform(get("/products/4")
+        MockHttpServletResponse response = mockMvc.perform(get("/products/" + product1.getId())
                 .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
 
         //then
-        then(productService).should().getById(4L);
+        then(productService).should().getById(product1.getId());
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(response.getContentAsString()).isEqualTo(asJsonString(product1));
     }
@@ -151,15 +151,15 @@ public class ProductControllerTest {
     @Test
     public void getById_NonexistentId_ProductNotFoundException() throws Exception {
         //given
-        BDDMockito.willThrow(new NotFoundException("")).given(productService).getById(anyLong());
+        BDDMockito.willThrow(new NotFoundException("")).given(productService).getById(product2.getId());
 
         //when
-        MockHttpServletResponse response = mockMvc.perform(get("/products/150")
+        MockHttpServletResponse response = mockMvc.perform(get("/products/" + product2.getId())
                 .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
 
         //then
-        then(productService).should().getById(150L);
+        then(productService).should().getById(product2.getId());
         assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value());
     }
 
