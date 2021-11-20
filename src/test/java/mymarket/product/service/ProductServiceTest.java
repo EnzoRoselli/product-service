@@ -55,7 +55,7 @@ public class ProductServiceTest {
     @Test
     public void save_ExpectedValues_Ok() {
         //given
-        given(productRepository.save(any())).willReturn(product1);
+        given(productRepository.save(product1)).willReturn(product1);
 
         //when
         Product productFromRepo = productService.save(product1);
@@ -84,13 +84,13 @@ public class ProductServiceTest {
     public void getById_ExpectedValues_Ok() {
         //given
         Optional<Product> productOptional = Optional.of(product1);
-        given(productRepository.findById(anyLong())).willReturn(productOptional);
+        given(productRepository.findById(product1.getId())).willReturn(productOptional);
 
         //when
-        Product productFromRepository = productService.getById(1L);
+        Product productFromRepository = productService.getById(product1.getId());
 
         //then
-        then(productRepository).should().findById(1L);
+        then(productRepository).should().findById(product1.getId());
         assertThat(productFromRepository).isNotNull();
         assertThat(productFromRepository).isEqualTo(productOptional.get());
     }
