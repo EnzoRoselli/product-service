@@ -80,6 +80,11 @@ public class ProductControllerTest {
 
         //then
         then(productService).should().save(product1);
+
+        assertThat(response).isNotNull();
+        assertThat(response.getStatus()).isNotNull();
+        assertThat(response.getContentAsString()).isNotNull();
+        assertThat(response.getContentType()).isNotNull();
         assertThat(response.getStatus()).isEqualTo(HttpStatus.CREATED.value());
         assertThat(response.getContentType()).isEqualTo(MediaType.APPLICATION_JSON.toString());
         assertThat(response.getContentAsString()).isEqualTo(asJsonString(product1));
@@ -99,6 +104,9 @@ public class ProductControllerTest {
 
         //then
         then(productService).should().save(product1);
+
+        assertThat(response).isNotNull();
+        assertThat(response.getStatus()).isNotNull();
         assertThat(response.getStatus()).isEqualTo(HttpStatus.BAD_REQUEST.value());
     }
 
@@ -114,6 +122,9 @@ public class ProductControllerTest {
 
         //then
         then(productService).should().deleteById(4L);
+
+        assertThat(response).isNotNull();
+        assertThat(response.getStatus()).isNotNull();
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
     }
 
@@ -129,6 +140,9 @@ public class ProductControllerTest {
 
         //then
         then(productService).should().deleteById(150L);
+
+        assertThat(response).isNotNull();
+        assertThat(response.getStatus()).isNotNull();
         assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value());
     }
 
@@ -144,6 +158,10 @@ public class ProductControllerTest {
 
         //then
         then(productService).should().getById(product1.getId());
+
+        assertThat(response).isNotNull();
+        assertThat(response.getStatus()).isNotNull();
+        assertThat(response.getContentAsString()).isNotNull();
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(response.getContentAsString()).isEqualTo(asJsonString(product1));
     }
@@ -160,6 +178,9 @@ public class ProductControllerTest {
 
         //then
         then(productService).should().getById(product2.getId());
+
+        assertThat(response).isNotNull();
+        assertThat(response.getStatus()).isNotNull();
         assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value());
     }
 
@@ -179,6 +200,10 @@ public class ProductControllerTest {
         //then
         then(productService).should().getByClasificationsAndName(
                 Arrays.asList(Clasifications.Almacen, Clasifications.Limpieza), "Lavandina");
+
+        assertThat(response).isNotNull();
+        assertThat(response.getStatus()).isNotNull();
+        assertThat(response.getContentAsString()).isNotNull();
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(response.getContentAsString()).isEqualTo(asJsonString(productList));
     }
@@ -196,6 +221,10 @@ public class ProductControllerTest {
 
         //then
         then(productService).should().getByClasificationsAndName(Arrays.asList(Clasifications.values()), "");
+
+        assertThat(response).isNotNull();
+        assertThat(response.getStatus()).isNotNull();
+        assertThat(response.getContentAsString()).isNotNull();
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(response.getContentAsString()).isEqualTo(asJsonString(productList));
     }

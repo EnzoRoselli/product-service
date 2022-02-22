@@ -63,7 +63,10 @@ public class ProductServiceTest {
         //then
         then(productRepository).should().save(product1);
         assertThat(productFromRepo).isNotNull();
-        assertThat(productFromRepo).isEqualTo(product1);
+        assertThat(productFromRepo.getClasification()).isEqualTo(product1.getClasification());
+        assertThat(productFromRepo.getDescription()).isEqualTo(product1.getDescription());
+        assertThat(productFromRepo.getId()).isEqualTo(product1.getId());
+        assertThat(productFromRepo.getImage()).isEqualTo(product1.getImage());
     }
 
     @Test
@@ -92,7 +95,10 @@ public class ProductServiceTest {
         //then
         then(productRepository).should().findById(product1.getId());
         assertThat(productFromRepository).isNotNull();
-        assertThat(productFromRepository).isEqualTo(productOptional.get());
+        assertThat(productFromRepository.getClasification()).isEqualTo(productOptional.get().getClasification());
+        assertThat(productFromRepository.getDescription()).isEqualTo(productOptional.get().getDescription());
+        assertThat(productFromRepository.getId()).isEqualTo(productOptional.get().getId());
+        assertThat(productFromRepository.getImage()).isEqualTo(productOptional.get().getImage());
     }
 
     @Test
